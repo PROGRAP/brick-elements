@@ -1,0 +1,18 @@
+rules:
+    indentation:
+        - 2
+        -
+            size: 4
+    property-sort-order:
+        - 2
+        -
+            order: 'concentric'
+    empty-args:
+        - 2
+        -
+            include: true
+
+    nesting-depth:
+        - 1
+        -
+            max-depth: 4
