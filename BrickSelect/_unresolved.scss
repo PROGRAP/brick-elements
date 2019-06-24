@@ -1,0 +1,22 @@
+@import './base';
+@import '../../scss/elements/base/input';
+
+brick-select {
+    &:not([resolved]) {
+        @include base-input();
+
+        overflow: hidden;
+
+        * {
+            display: none;
+        }
+
+        &[mode='inline'] {
+            @include select-mode-inline();
+        }
+
+        &[mode='fit'] {
+            @include select-mode-fit();
+        }
+    }
+}

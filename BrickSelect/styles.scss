@@ -1,0 +1,179 @@
+@import './base';
+@import '../../scss/elements/base/input';
+
+$dropdow-bg: #fff;
+$dropdown-shadow: rgba(0, 0, 0, .5);
+$select-item-hover-bg: $gray6;
+
+:host {
+    @include base-input();
+    @include base-input-skeleton();
+
+    display: inline-flex;
+    position: relative;
+    align-items: center;
+
+    &::after {
+        @include base-input-action-area();
+
+        position: absolute;
+        top: 50%;
+        right: 7px ;
+        transform: translateY(-50%);
+        border-top: 5px solid $base-input-label-color;
+        border-right: 5px solid transparent;
+        border-left: 5px solid transparent;
+        content: '';
+    }
+}
+
+:host(:hover) {
+    @include base-input-hover();
+}
+
+:host(:focus-within) {
+    @include base-input-focus();
+}
+
+:host([mode='inline']) {
+    @include select-mode-inline();
+
+    &::after {
+        @include select-mode-inline-after();
+    }
+}
+
+:host(:not([mode='inline'])) {
+    @include base-input-font();
+}
+
+:host([mode='fit']) {
+    @include select-mode-fit();
+}
+
+.label {
+    pointer-events: none;
+
+    &.placeholder {
+        color: $base-input-label-color;
+    }
+}
+
+.screen-block {
+    position: fixed;
+    top: 0;
+    left: 0;
+    float: none;
+    z-index: 150;
+    cursor: default;
+    width: 100vw;
+    height: 100vh;
+
+    &:not(.active) {
+        display: none;
+    }
+}
+
+::slotted(select) {
+    position: absolute;
+    left: 15px;
+    opacity: 0;
+    pointer-events: none;
+
+    &:invalid {
+        border: 0;
+        box-shadow: none;
+    }
+}
+
+.error-container {
+    @include base-input-error-message();
+
+    position: absolute;
+    top: 100%;
+    left: 0;
+    transform: translate3d(0, -10%, 0);
+    transition: opacity .2s ease-out, transform .2s ease-out, visibility .1s linear .2s;
+    visibility: hidden;
+    opacity: 0;
+}
+
+:host(.has--error),
+:host(.invalid) {
+    @include base-input-error();
+
+    &::after {
+        border-top-color: $base-input-error-color;
+    }
+
+    .label {
+        @include base-input-error-label();
+    }
+
+    .error-container {
+        transform: translate3d(0, 0, 0);
+        transition: opacity .2s ease-out, transform .2s ease-out;
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
+:host([disabled].lgv-amount) {
+    border-color: transparent;
+    background-color: transparent;
+
+    &::after {
+        content: unset;
+    }
+
+    .label {
+        color: $gray0;
+    }
+}
+
+:host([disabled]) {
+    pointer-events: none;
+    user-select: none;
+
+    &::after {
+        border-top-color: $base-input-disabled-color;
+    }
+
+    .label {
+        @include base-input-disabled();
+    }
+}
+
+ul {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 151;
+    margin: 0;
+    border-radius: 4px;
+    box-shadow: 0 3px 5px 0 $dropdown-shadow;
+    background: $dropdow-bg;
+    padding: 0;
+    min-width: 100%;
+    max-height: 300px;
+    overflow: auto;
+    list-style: none;
+    box-sizing: border-box;
+
+    &:not(.active) {
+        display: none;
+    }
+
+    li {
+        @include base-input-skeleton();
+
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+        user-select: none;
+
+        &:hover {
+            background-color: $select-item-hover-bg;
+        }
+    }
+}

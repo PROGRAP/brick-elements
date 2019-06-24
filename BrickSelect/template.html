@@ -1,0 +1,13 @@
+<span class="label" bind-class="{ placeholder: view._isPlaceholder }">{{view.selectedItem.title}}</span>
+
+<ul class="option-list" bind-class="{ active: view._isOpen }">
+    <template bind-repeat="option in view._options">
+        <li bind-event(click)="view._optionSelected">{{option.title}}</li>
+    </template>
+</ul>
+
+<div class="screen-block" bind-class="{ active: view._isOpen }" bind-event(click)="view._onClose"></div>
+
+<slot></slot>
+
+<div class="error-container">{{view._errorMessage}}</div>

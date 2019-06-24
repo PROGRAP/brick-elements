@@ -1,0 +1,16 @@
+@mixin select-mode-inline() {
+    margin: 0 24px;
+    border: 0;
+    padding: 2px;
+    padding-right: 20px;
+    width: auto;
+}
+
+@mixin select-mode-inline-after() {
+    right: 5px;
+}
+
+@mixin select-mode-fit() {
+    padding-right: 30px;
+    width: auto;
+}
