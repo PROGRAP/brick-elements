@@ -3,7 +3,7 @@ import '@webcomponents/webcomponentsjs/bundles/webcomponents-sd-ce-pf';
 import { HTMLElement, prepareConstructor } from 'application-frame/core/nativePrototype';
 import { DataBinding } from '@af-modules/databinding';
 import { RenderEngine } from 'application-frame/rendering';
-import { TouchVelocity } from '../../lib/TouchVelocity';
+import { TouchVelocity } from './lib/TouchVelocity';
 import template from './template';
 
 import './bindings/StylingBinding';
@@ -14,7 +14,7 @@ const ScrollLock = {
 };
 
 const BrickSliderMeta = {
-    name: 'brick-banner-slider',
+    name: 'brick-slider',
     attributes: ['selected-index'],
 
     get object() {
@@ -67,7 +67,7 @@ const BrickSlider = {
     get initialOffset() {
         const offset = parseInt(this.getAttribute('initial-offset'), 10);
 
-        return isNaN(offset) ? 50 : offset;
+        return isNaN(offset) ? 0 : offset;
     },
 
     get threshold() {
