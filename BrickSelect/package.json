@@ -1,0 +1,23 @@
+{
+  "name": "@prograp/brick-select",
+  "version": "1.0.0",
+  "description": "custom selector element",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Prograp/Custom-Elements.git"
+  },
+  "keywords": [
+    "web-component",
+    "html-element"
+  ],
+  "author": "PROGRAP",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Prograp/Custom-Elements/issues"
+  },
+  "homepage": "https://github.com/Prograp/Custom-Elements#readme"
+}
