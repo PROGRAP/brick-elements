@@ -1,0 +1,5 @@
+brick-modal {
+    &:not([resolved]) {
+        display: inline-block;
+    }
+}

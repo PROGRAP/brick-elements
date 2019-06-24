@@ -1,0 +1,18 @@
+<div class="dialog" role="dialog" bind-event(click)="view._onDialogClicked">
+    <header>
+        <slot name="title">
+            <h4 class="title default">Dialog Title</h4>
+        </slot>
+
+        <div class="close-wrapper" bind-event(click)="view._closeModal">
+            <slot name="close-toggle">
+                <button class="close-buttond default">Close</button>
+            </slot>
+        </div>
+    </header>
+    <div class="content">
+        <slot>
+            <span class="loading default"></span>
+        </slot>
+    </div>
+</div>

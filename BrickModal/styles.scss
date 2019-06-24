@@ -1,0 +1,141 @@
+$screen-block-bg: rgba(0, 0, 0, .3);
+$dialog-bg: #fff;
+$dialog-header-border: #858585;
+$transition-time: .2s;
+$size-s: 768px;
+
+:host {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 200;
+    background-color: $screen-block-bg;
+    width: 100vw;
+    height: 100vh;
+}
+
+:host(:not([open])) {
+    display: none;
+}
+
+.dialog {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    flex-direction: column;
+    transform: translate3d(-50%, -50%, 0);
+    background-color: $dialog-bg;
+    max-width: 95%;
+    max-height: 95%;
+
+    @media (max-width: 549px) {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+header {
+    display: flex;
+    border-bottom: 1px solid $dialog-header-border;
+    padding: 15px;
+
+    ::slotted([slot='title']),
+    .title {
+        flex: 1 1 auto;
+        margin: 0;
+    }
+
+    ::slotted([slot='close-toggle']),
+    .close-button {
+        flex: 0 0 auto;
+        margin: 0;
+    }
+}
+
+.loading {
+    &::after {
+        content: 'Loading...';
+    }
+}
+
+.content {
+    flex: 0 1 100%;
+    overflow: auto;
+
+    .loading {
+        display: block;
+        margin: 50px auto;
+        width: 100px;
+    }
+}
+
+// enter and exit animations
+@media (max-width: $size-s - 1) {
+    :host(.force-hide) {
+        transform: translate3d(0, 10%, 0);
+        opacity: 0;
+        will-change: transform, opacity;
+    }
+
+    :host(.force-hide.transition) {
+        transform: none;
+        transition: transform $transition-time ease-out, opacity $transition-time ease-out;
+        opacity: 1;
+    }
+
+    :host(.force-show) {
+        display: block;
+        transform: translate3d(0, 0, 0);
+        will-change: transform, opacity;
+    }
+
+    :host(.force-show.transition) {
+        transform: translate3d(0, 10%, 0);
+        transition: transform $transition-time ease-out, opacity $transition-time ease-out;
+        opacity: 0;
+    }
+}
+
+@media (min-width: $size-s) {
+    :host(.force-hide) {
+        opacity: 0;
+
+        .dialog {
+            transform: translate3d(-50%, -40%, 0);
+            opacity: 0;
+        }
+    }
+
+    :host(.force-hide.transition) {
+        transition: opacity $transition-time ease-out;
+        opacity: 1;
+
+        .dialog {
+            transform: translate3d(-50%, -50%, 0);
+            transition: transform $transition-time ease-out, opacity $transition-time ease-out;
+            opacity: 1;
+        }
+    }
+
+    :host(.force-show) {
+        display: block;
+
+        .dialog {
+            opacity: 1;
+        }
+    }
+
+    :host(.force-show.transition) {
+        transition: opacity $transition-time ease-out;
+        opacity: 0;
+
+
+        .dialog {
+            transform: translate3d(-50%, -40%, 0);
+            transition: transform $transition-time ease-out, opacity $transition-time ease-out;
+            opacity: 0;
+        }
+    }
+}
