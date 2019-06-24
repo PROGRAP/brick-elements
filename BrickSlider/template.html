@@ -1,0 +1,8 @@
+<div class="canvas" bind-event(touchstart)="view._onDragSlides">
+    <div class="slides" bind-styling="view.currentTransform()" bind-event(transitionend)="view.onSliderMoved" bind-event(click)="view._onSlideClicked">
+        <slot></slot>
+    </div>
+</div>
+
+<slot name="previous"></slot>
+<slot name="next"></slot>

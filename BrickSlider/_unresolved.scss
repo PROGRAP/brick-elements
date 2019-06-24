@@ -1,0 +1,8 @@
+brick-banner-slider {
+    &:not([resolved]) {
+        display: block;
+        visibility: hidden;
+        height: 100%;
+        overflow: hidden;
+    }
+}
