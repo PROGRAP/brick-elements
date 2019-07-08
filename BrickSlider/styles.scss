@@ -1,0 +1,62 @@
+$default-bg: #fff;
+
+:host {
+    display: block;
+    position: relative;
+    height: 100%;
+    user-select: none;
+}
+
+.canvas {
+    max-width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.slides {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    height: 100%;
+
+    &:not(.lock) {
+        transition: transform .5s ease-out;
+    }
+}
+
+.slides ::slotted(:not([slot])) {
+    display: flex;
+    position: relative;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    overflow: hidden;
+}
+
+::slotted([slot='previous']),
+::slotted([slot='next']) {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+::slotted([slot='previous']) {
+    left: 18%;
+}
+
+::slotted([slot='next']) {
+    right: 18%;
+}
+
+:host([no-prev]) {
+    ::slotted([slot='previous']) {
+        display: none;
+    }
+}
+
+:host([no-next]) {
+    ::slotted([slot='next']) {
+        display: none;
+    }
+}
