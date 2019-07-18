@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Prograp/Custom-Elements.git"
+    "url": "git+https://github.com/PROGRAP/brick-elements.git"
   },
   "keywords": [
     "web-component",
@@ -17,7 +17,7 @@
   "author": "PROGRAP",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/Prograp/Custom-Elements/issues"
+    "url": "https://github.com/PROGRAP/brick-elements/issues"
   },
-  "homepage": "https://github.com/Prograp/Custom-Elements#readme"
+  "homepage": "https://github.com/PROGRAP/brick-elements#readme"
 }

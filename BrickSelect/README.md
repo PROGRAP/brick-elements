@@ -1,17 +1,17 @@
 # BrickSelect
 
-BrickSelect is a web component from PROGRAP developers who wanted an reusable and extendable drop-in replacement selector element.
+BrickSelect is a custom element by PROGRAP providing a reusable and extendable drop-in replacement select input element.
 
 # #Installation
 `$ npm install @prograp/brick-slider`
 
 ## Usage
 #### Element
-```
+``` html
 <brick-select name="quantity" required>
   <option value="">0,00</option>
 </brick-select>
 ```
 #### Attributes
-+ `auto-submit` ***automatic submitting the selected value***
-+ `disabled` ***disables the selector***
++ `auto-submit` ***automatically submit the surrounding form once a value has been selected***
++ `disabled` ***disables the input***
