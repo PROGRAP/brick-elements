@@ -1,0 +1,28 @@
+{
+  "name": "@prograp/brick-modal",
+  "version": "1.0.0",
+  "description": "Modal custom element",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PROGRAP/brick-elements.git"
+  },
+  "keywords": [
+    "web-component",
+    "custom-element"
+  ],
+  "author": "PROGRAP",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@af-modules/databinding": "^1.2.0-dev.11",
+    "@webcomponents/webcomponentsjs": "^2.0.0",
+    "application-frame": "^0.7.0-dev.5"
+  },
+  "bugs": {
+    "url": "https://github.com/PROGRAP/brick-elements/issues"
+  },
+  "homepage": "https://github.com/PROGRAP/brick-elements#readme"
+}
