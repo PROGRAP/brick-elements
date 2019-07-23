@@ -1,0 +1,28 @@
+{
+  "name": "@prograp/brick-slider",
+  "version": "1.0.0",
+  "description": "Slider custom element",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Prograp/brick-elements.git"
+  },
+  "keywords": [
+    "custom-element",
+    "web-component"
+  ],
+  "author": "PROGRAP",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@af-modules/databinding": "^1.2.0-dev.11",
+    "@webcomponents/webcomponentsjs": "^2.0.0",
+    "application-frame": "^0.7.0-dev.5"
+  },
+  "bugs": {
+    "url": "https://github.com/Prograp/brick-elements/issues"
+  },
+  "homepage": "https://github.com/Prograp/brick-elements#readme"
+}
