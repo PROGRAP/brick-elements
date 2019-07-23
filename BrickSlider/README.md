@@ -14,7 +14,7 @@ Brick slider is a web component developed by PROGRAP for sliders.
 
 ## Usage
 #### Element:
-```
+``` html
 <brick-banner-slider arrow-controls no-carousel threshold="5" initial-offset="0">
     <!--Create your elements for navigation  -->
     <button slot="previous">
