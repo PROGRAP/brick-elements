@@ -4,6 +4,7 @@ import { HTMLElement, prepareConstructor } from 'application-frame/core/nativePr
 import { DataBinding } from '@af-modules/databinding';
 import { RenderEngine } from 'application-frame/rendering';
 import { TouchVelocity } from './lib/TouchVelocity';
+import { SliderPagination } from './lib/SliderPagination';
 import template from './template';
 
 import './bindings/StylingBinding';
@@ -22,6 +23,12 @@ const BrickSliderMeta = {
     }
 };
 
+const StepTypes = {
+    OneElement: 'one',
+    OnePage: 'page',
+};
+
+const pPagination = Symbol('BrickSlider.pagination');
 const meta = BrickSliderMeta;
 
 const BrickSlider = {
@@ -47,6 +54,7 @@ const BrickSlider = {
     _canvasSize: 0,
 
     __sl: null,
+    [pPagination]: null,
 
     get selectedItem() {
         return this._slides && this._slides[this._selectedIndex];
@@ -82,6 +90,10 @@ const BrickSlider = {
         return this.hasAttribute('no-slide');
     },
 
+    get step() {
+        return this.getAttribute('step') || StepTypes.OneElement;
+    },
+
     set selectedIndex(value) {
         if (!this._slides) {
             return;
@@ -98,11 +110,15 @@ const BrickSlider = {
         }
 
         if (value < 0) {
-            value = this._slides.length + value;
+            value = length + value;
         }
 
         if (value >= length) {
             value = value % length;
+
+            if (this.step === StepTypes.OnePage) {
+                value = 0;
+            }
         }
 
         if (this._slides[this._selectedIndex]) {
@@ -154,7 +170,7 @@ const BrickSlider = {
     get _visibleSlides() {
         const slideSize = this._currentSlideSize;
         const canvas = this._canvasSize;
-        const visibleSlides = Math.floor(canvas / slideSize);
+        const visibleSlides = Math.round(canvas / slideSize);
 
         return visibleSlides;
     },
@@ -166,6 +182,7 @@ const BrickSlider = {
         instance.attachShadow({ mode: 'open' });
         instance.shadowRoot.appendChild(node);
         instance._scope = scope;
+        instance[pPagination] = SliderPagination.from(instance);
 
         return instance;
     },
@@ -448,7 +465,9 @@ const BrickSlider = {
             this._lockNavigation = true;
         }
 
-        this.selectedIndex -= 1;
+        const stepSize = (this.step === StepTypes.OnePage) ? this[pPagination].prevPage : 1;
+
+        this.selectedIndex -= stepSize;
         this._scope.update();
     },
 
@@ -461,7 +480,9 @@ const BrickSlider = {
             this._lockNavigation = true;
         }
 
-        this.selectedIndex += 1;
+        const stepSize = (this.step === StepTypes.OnePage) ? this[pPagination].nextPage : 1;
+
+        this.selectedIndex += stepSize;
         this._scope.update();
     },
 
@@ -530,12 +551,11 @@ const BrickSlider = {
             const slideSize = this._currentSlideSize;
             const threshold = Math.abs(delta) >= (slideSize * 0.4);
             const flick = velocity.value > 0.01;
+            const flickOrThreshold = flick || threshold;
 
-            if (delta < 0 && (flick || threshold)) {
+            if (delta < 0 && flickOrThreshold) {
                 this.nextClicked();
-            }
-
-            if (flick || threshold) {
+            }else if(flickOrThreshold) {
                 this.prevClicked();
             }
         }

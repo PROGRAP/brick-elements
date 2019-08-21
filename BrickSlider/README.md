@@ -34,3 +34,4 @@ Brick slider is a web component developed by PROGRAP for sliders.
 + `auto-slide="100"` **Enables auto slide with an interval set in milliseconds**
 + `no-slide` **Disables sliding animation**
 + `threshold="3"` **Amount of slides needed to show**
++ `step="one|page"` **controls how much a slider should be advanced, defaults to** `one`
