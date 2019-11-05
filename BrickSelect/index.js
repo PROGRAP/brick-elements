@@ -113,6 +113,10 @@ const BrickSelect = {
 
         this._processOptions();
         this._nativeSelect.required = this.hasAttribute('required');
+        
+	if (!!this.getAttribute('form')) {
+            this._nativeSelect.setAttribute("form",this.getAttribute('form'));
+        }
 
         this.addEventListener('click', this._onSelectOpened.bind(this));
         this.addEventListener('change', this._onSelectionChanged.bind(this));
@@ -225,9 +229,12 @@ const BrickSelect = {
 
         event.preventDefault();
 
-        if (event.target.form.querySelector(':invalid') !== event.target) {
+        const firstInvalidInput = Array.from(event.target.form.elements)
+           .find(element => element.matches(':invalid'));
+
+        if (firstInvalidInput !== event.target) {
             return;
-        }
+        }        
 
         event.target.parentElement.scrollIntoView({ block: 'center', inline: 'nearest', behavior: 'smooth' });
     },
