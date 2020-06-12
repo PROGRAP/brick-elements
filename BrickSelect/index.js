@@ -204,7 +204,7 @@ const BrickSelect = {
         this._touched = true;
 
         async(() => {
-            this.dispatchEvent(new Event('change'));
+            this.dispatchEvent(new Event('change', { bubbles: true }));
         });
 
         event.preventRecycle();
@@ -213,7 +213,7 @@ const BrickSelect = {
 
     _onNativeChanged() {
         this._scope.update();
-        this.dispatchEvent(new Event('change'));
+        this.dispatchEvent(new Event('change', { bubbles: true }));
     },
 
     _not(value) {
